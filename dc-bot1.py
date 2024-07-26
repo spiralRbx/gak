@@ -70,7 +70,7 @@ class MyClient(discord.Client):
 
                         if self.target_channel:
                             await self.target_channel.send(
-                                content=f'Convertendo {attachment.filename} to {bit_depth}...',
+                                content=f'Convertendo {attachment.filename} para {bit_depth}...',
                                 file=discord.File(output_filename)
                             )
                             print(f'Sent converted file: {output_filename}')
@@ -81,13 +81,13 @@ class MyClient(discord.Client):
                         os.remove(output_filename)
                     except subprocess.CalledProcessError as e:
                         print(f'Error during conversion: {e}')
-                        await message.channel.send('There was an error converting the file.')
+                        await message.channel.send('Houve um erro ao converter o arquivo.')
                 else:
                     print(f'Unsupported file type: {attachment.filename}')
                     await message.channel.send('Tipo de arquivo não suportado. Por favor carregue um arquivo ogg ou mp3.')
             else:
                 print('No attachments found')
-                await message.channel.send('Please attach a file to convert.')
+                await message.channel.send('Por favor, anexe um arquivo para converter.')
         else:
             print('No command detected')
 
